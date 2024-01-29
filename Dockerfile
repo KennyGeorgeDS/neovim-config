@@ -42,12 +42,19 @@ RUN useradd -m -s /bin/bash kenny \
 WORKDIR /home/kenny
 ENV HOME /home/kenny
 
+# User credentials
+COPY .netrc /home/kenny/.netrc
+COPY .pgpass /home/kenny/.pgpass
+RUN chmod 600 /home/kenny/.pgpass
+RUN chmod 600 /home/kenny/.netrc
+
 # Create .config directory
 RUN mkdir -p .config/nvim
 
 # Clone NVChad repo into .config/nvim directory
 #RUN git clone https://github.com/NvChad/NvChad .config/nvim --depth 1
-RUN git clone https://github.com/KennyGeorgeDS/neovim-config.git .config/nvim
+RUN git clone https://github.com/KennyGeorgeDS/neovim-config .config/nvim
+RUN nvim -c "Lazy install" -c "Lazy update" -c "sleep 120" -c "qa"
 
 # Set entry point
 ENTRYPOINT ["/bin/bash", "-c", "nvim"]
