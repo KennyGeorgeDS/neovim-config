@@ -11,5 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Set mapleader before loading lazy
+vim.g.mapleader = " "
+
+-- Load lazy and vim-options (analogous to .vimrc)
 require("lazy").setup("plugins")
 require("vim-options")

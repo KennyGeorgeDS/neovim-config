@@ -1,6 +1,6 @@
 -- Theme
-vim.opt.background = "dark"
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 vim.cmd("colorscheme gruvbox")
 
 -- Tab Settings
@@ -9,7 +9,6 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set autoindent")
-vim.g.mapleader = " "
 
 -- Navigate vim panes better
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
@@ -25,5 +24,4 @@ vim.keymap.set('i', 'kj', '<ESC>')
 vim.keymap.set('i', 'jk', '<ESC>')
 vim.wo.number = true
 vim.wo.relativenumber = true
-
 
