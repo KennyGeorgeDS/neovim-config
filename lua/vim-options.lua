@@ -1,7 +1,7 @@
 -- **** THEME ****
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
-vim.cmd("colorscheme gruvbox-baby")
+vim.cmd("colorscheme gruvbox")
 
 
 -- **** MODE SETTINGS ****
@@ -18,12 +18,12 @@ vim.opt.relativenumber = true
 -- **** EDITOR SETTINGS ****
 -- Tab Settings
 vim.cmd [[
-set autoindent
-set expandtab
-set smartindent
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+    set autoindent
+    set expandtab
+    set smartindent
+    set shiftwidth=4
+    set softtabstop=4
+    set tabstop=4
 ]]
 
 
