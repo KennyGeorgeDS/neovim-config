@@ -1,32 +1,48 @@
 return {
-	"nvimtools/none-ls.nvim",
-	config = function()
-		local null_ls = require("null-ls")
-		null_ls.setup({
-			sources = {
-				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.prettier,
-				null_ls.builtins.diagnostics.erb_lint,
-				null_ls.builtins.diagnostics.eslint_d,
-				null_ls.builtins.diagnostics.rubocop,
-				null_ls.builtins.formatting.rubocop,
-			},
-		})
+	{
+		"WhoIsSethDaniel/mason-tool-installer",
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					"prettier", -- prettier formatter
+					"stylua", -- lua formatter
+					"isort", -- python formatter
+					"black", -- python formatter
+					"pylint", -- python linter
+					"sqlfmt", -- sql/postgresql formatter
+					"sqlfluff", -- sql linter
+                    "beautysh", -- bash formatter
+				},
+			})
+		end,
+	},
+	{
+		"nvimtools/none-ls.nvim",
+		config = function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.formatting.stylua,
+					null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.diagnostics.pylint.with({
+                        diagnostics_postprocess = function(diagnostic)
+                            diagnostic.code = diagnostic.message_id
+                        end,
+                    }),
+					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.isort,
+					null_ls.builtins.diagnostics.sqlfluff.with({
+                        extra_args = { "--dialect", "postgres" }
+                    }),
+					null_ls.builtins.formatting.sqlfmt,
+                    null_ls.builtins.formatting.beautysh,
+				    },
+			})
 
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-	end,
+			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+		end,
+	},
 }
-
-
-
-
-
-
-
-
-
-
-
 
 --return {
 --  {
@@ -67,16 +83,6 @@ return {
 --    end,
 --  },
 --}
-
-
-
-
-
-
-
-
-
-
 
 --return {
 --    {

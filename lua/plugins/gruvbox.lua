@@ -1,6 +1,6 @@
 return {
-    { 
-        "ellisonleao/gruvbox.nvim", 
+    {
+        "ellisonleao/gruvbox.nvim",
         lazy = false,
         name = "gruvbox",
         priority = 1000,
